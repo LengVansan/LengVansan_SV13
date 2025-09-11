@@ -1,0 +1,93 @@
+<!-- Page body -->
+<body>
+  <!-- Login form with submit handler -->
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <!-- Full height centered flex container -->
+    <div class="d-flex justify-content-center min-vh-100 align-items-center">
+      <!-- Centered column with fixed width -->
+      <div class="col-4 mx-auto">
+        <!-- Card container with shadow and padding -->
+        <div class="card shadow-lg p-4 bg-primary-subtlebg-gradient text-white">
+          <!-- Login form title -->
+          <h1 class="text-center mb-4 fw-bold text-warning">Login Form </h1>
+
+          <!-- Username label -->
+          <label class="form-label fw-bold text-warning">Username:</label>
+
+          <!-- Username input group with icon -->
+          <div class="input-group flex-nowrap">
+            <!-- User icon -->
+            <span class="input-group-text">
+              <i class="bi bi-person-fill" style="font-size: 1rem; color: rgb(219, 197, 1)"></i>
+            </span>
+
+            <!-- Username input field -->
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              [(ngModel)]="username"
+              name="username"
+              required
+              #usernameInput="ngModel"
+              [class.is-invalid]="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)"
+            />
+
+            <!-- Username validation message -->
+            <div *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)" class="invalid-feedback d-block">
+              Username is required.
+            </div>
+          </div>
+
+          <!-- Spacing before password input -->
+          <div class="mt-4">
+            <!-- Password label -->
+            <label class="form-label fw-bold text-warning">Password:</label>
+
+            <!-- Password input group with icon -->
+            <div class="input-group flex-nowrap">
+              <!-- Lock icon -->
+              <span class="input-group-text">
+                <i class="bi bi-lock" style="font-size: 1rem; color: rgb(219, 197, 1)"></i>
+              </span>
+
+              <!-- Password input field -->
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                [(ngModel)]="password"
+                name="password"
+                required
+                #passwordInput="ngModel"
+                [class.is-invalid]="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)"
+              />
+
+              <!-- Password validation message -->
+              <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)" class="invalid-feedback d-block">
+                Password is required.
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons row -->
+          <div class="d-flex gap-2 mt-4">
+            <!-- Submit button, only enabled when form is valid -->
+            <button type="submit" class="btn btn-primary flex-fill" [disabled]="loginForm.invalid" [routerLink]="loginForm.valid ? '/add-delivery' : null">
+              Login
+            </button>
+
+            <!-- Reset button clears form -->
+            <button type="reset" class="btn btn-danger flex-fill">Reset</button>
+          </div>
+
+          <!-- Forgot password link -->
+          <div class="text-center mt-3">
+            <!-- Navigation link to recover password -->
+            <a href="#">Forgot your password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>

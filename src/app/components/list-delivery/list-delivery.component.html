@@ -1,0 +1,191 @@
+<!-- Presentation Tip: Main container - Centered layout for delivery list -->
+<!-- Explain: Provides responsive container with max-width for optimal viewing on different screen sizes -->
+<div class="container mt-5" 
+     style="max-width: 1200px; height: auto; margin-left: auto; margin-right: auto; 
+            padding-left: 3rem; padding-right: 3rem; border-radius: 0.5rem; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); padding-top: 1rem; padding-bottom: 0.1rem; 
+            overflow-y: auto; background-color: rgb(227, 193, 101); border: 3px solid #ffc107;">
+  <!-- Presentation Tip: Header section - Title and navigation controls -->
+  <!-- Explain: Flexbox layout to space title and potential action buttons -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <!-- Presentation Tip: Delivery List title - Prominent heading -->
+    <!-- Explain: Styled as button for visual consistency, uses danger color for attention -->
+    <div class="mb-3" style="border-radius: 0.5rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); padding: 1.5rem; background-color: #ffa601;">
+      <h4 class="text-light d-flex align-items-center gap-2 fs-6 mb-0">
+        <i class="bi bi-list"></i> Delivery List
+      </h4>
+    </div>
+
+    <!-- Presentation Tip: Add new delivery button - Navigation to creation form -->
+    <!-- Explain: Commented out as functionality is handled by parent component -->
+    <!-- <button class="btn btn-warning text-white align-items-center mt-5" (click)="addNewDelivery()">
+      <i class="bi bi-plus-circle me-2 fs-5"></i> Create New Account
+    </button> -->
+
+  </div>
+
+  <!-- Presentation Tip: Delivery cards grid - Responsive card layout -->
+  <!-- Explain: Bootstrap grid system for responsive delivery cards display -->
+  <div class="row mt-4" style="max-height: 500px; overflow-y: auto;">
+    <!-- Presentation Tip: Individual delivery card - Loop through deliveries -->
+    <!-- Explain: *ngFor directive iterates through deliveries array, col-md-4 for 3-column layout on medium+ screens -->
+    <div class="col-md-4 mb-3" *ngFor="let d of deliveries">
+      <!-- Presentation Tip: Card container - Delivery information display -->
+      <!-- Explain: Bootstrap card with warning border theme and shadow for visual hierarchy -->
+      <div class="card p-3 shadow border-warning border-2">
+        <!-- Presentation Tip: View mode - Display delivery details -->
+        <!-- Explain: *ngIf conditional rendering shows view mode unless editing this specific delivery -->
+        <ng-container *ngIf="editingId !== d.id; else editForm">
+          <!-- Presentation Tip: Customer name - Primary identifier -->
+          <!-- Explain: Highlighted with warning color and person icon for customer identification -->
+          <h5 class="text-warning mb-2 d-flex align-items-center gap-2">
+            <i class="bi bi-person-vcard-fill"></i> {{ d.name }}
+          </h5>
+          <!-- Presentation Tip: Contact phone - Communication method -->
+          <!-- Explain: Telephone icon indicates contact information -->
+          <p class="mb-1">
+            <i class="bi bi-telephone-forward-fill"></i> {{ d.phone }}
+          </p>
+          <!-- Presentation Tip: Delivery location - Geographic destination -->
+          <!-- Explain: Clickable Google Maps link with geo icon for location visualization -->
+          <p class="mb-1">
+            <i class="bi bi-geo-alt-fill"></i> <a href="{{ d.location }}" target="_blank">Location Customer</a>
+          </p>
+          <!-- Presentation Tip: Package description - Item being delivered -->
+          <!-- Explain: Box icon represents the physical package contents -->
+          <p class="mb-1">
+            <i class="bi bi-box-seam"></i> {{ d.item }}
+          </p>
+          <!-- Presentation Tip: Scheduled date - When delivery occurs -->
+          <!-- Explain: Calendar icon indicates temporal information -->
+          <p class="mb-1">
+            <i class="bi bi-calendar-date"></i> {{ d.deliveryDate }}
+          </p>
+
+          <!-- Presentation Tip: Package dimensions - Size category -->
+          <!-- Explain: Expand icon symbolizes package size/scaling -->
+          <p class="mb-1">
+            <i class="bi bi-arrows-angle-expand"></i> {{ d.packageSize }}
+          </p>
+          <!-- Presentation Tip: Special instructions - Additional notes -->
+          <!-- Explain: Conditional display with sticky note icon for supplementary information -->
+          <p *ngIf="d.notes" class="mb-1">
+            <i class="bi bi-sticky"></i> {{ d.notes }}
+          </p>
+          <!-- Presentation Tip: Action controls - Edit and delete operations -->
+          <!-- Explain: Flexbox layout spaces action buttons for delivery management -->
+          <div class="d-flex justify-content-between mt-3">
+            <!-- Presentation Tip: Edit button - Switch to inline editing mode -->
+            <!-- Explain: Outline success button with pencil icon triggers edit state -->
+            <button class="btn btn-outline-success btn-sm d-flex align-items-center" (click)="edit(d)">
+              <i class="bi bi-pencil me-1"></i> Edit
+            </button>
+            <!-- Presentation Tip: Delete button - Remove delivery with confirmation -->
+            <!-- Explain: Outline danger button with trash icon prompts deletion confirmation -->
+            <button class="btn btn-outline-danger btn-sm d-flex align-items-center" (click)="confirmDelete(d.id)">
+              <i class="bi bi-trash me-1"></i> Delete
+            </button>
+          </div>
+        </ng-container>
+
+        <!-- Presentation Tip: Edit form template - Inline editing interface -->
+        <!-- Explain: ng-template with #editForm reference for conditional display during editing -->
+        <ng-template #editForm>
+          <!-- Presentation Tip: Edit form container - Input fields for modification -->
+          <!-- Explain: Form inputs bound to editModel for two-way data binding -->
+          <div>
+            <!-- Presentation Tip: Name input - Customer identification field -->
+            <!-- Explain: Input group with person icon and warning theme styling -->
+            <div class="input-group mb-2">
+              <span class="input-group-text bg-warning text-white">
+                <i class="bi bi-person-fill"></i>
+              </span>
+              <input class="form-control border-warning" [(ngModel)]="editModel.name" placeholder="Full Name" required />
+            </div>
+            <!-- Validation: Shows error for invalid name -->
+              
+            <div *ngIf="!editModel.name" class="text-danger small mt-1">Name is required.</div>
+            <!-- Presentation Tip: Phone input - Contact information field -->
+            <!-- Explain: Telephone icon indicates phone number input -->
+            <div class="input-group mb-2">
+              <span class="input-group-text bg-warning text-white">
+                <i class="bi bi-telephone-fill"></i>
+              </span>
+              <input class="form-control border-warning" [(ngModel)]="editModel.phone" placeholder="Phone" required type="tel" />
+            </div>
+            <!-- Validation: Shows error for invalid phone -->
+            <div *ngIf="!editModel.phone" class="text-danger small mt-1">Phone is required.</div>
+            <!-- Presentation Tip: Location input - Geographic destination field -->
+            <!-- Explain: Geo icon represents location/mapping functionality -->
+            <div class="input-group mb-2">
+              <span class="input-group-text bg-warning text-white">
+                <i class="bi bi-geo-alt-fill"></i>
+              </span>
+              <input class="form-control border-warning" [(ngModel)]="editModel.location" placeholder="Location" required type="url" pattern="https?://(www\.)?google\.com/maps.*" />
+            </div>
+            <!-- Validation: Shows error for invalid location -->
+            <div *ngIf="!editModel.location" class="text-danger small mt-1" >Location is required.</div>
+            <!-- Presentation Tip: Item input - Package description field -->
+            <!-- Explain: Box icon symbolizes package contents -->
+            <div class="input-group mb-2">
+              <span class="input-group-text bg-warning text-white">
+                <i class="bi bi-box-seam"></i>
+              </span>
+              <input class="form-control border-warning" [(ngModel)]="editModel.item" placeholder="Item Description" required />
+            </div>
+            <!-- Validation: Shows error for invalid item -->
+            <div *ngIf="!editModel.item" class="text-danger small mt-1">Item is required.</div>
+            <!-- Presentation Tip: Date input - Delivery scheduling field -->
+            <!-- Explain: Calendar icon indicates date selection, type="date" for native picker -->
+            <div class="input-group mb-2">
+              <span class="input-group-text bg-warning text-white">
+                <i class="bi bi-calendar-date"></i>
+              </span>
+              <input class="form-control border-warning" [(ngModel)]="editModel.deliveryDate" type="date" required />
+            </div>
+            <!-- Validation: Shows error for invalid date -->
+            <div *ngIf="!editModel.deliveryDate" class="text-danger small mt-1">Delivery date is required.</div>
+            <!-- Presentation Tip: Size select - Package dimension field -->
+            <!-- Explain: Expand icon represents size selection, dropdown for size categories -->
+            <div class="input-group mb-2">
+              <span class="input-group-text bg-warning text-white">
+                <i class="bi bi-arrows-angle-expand"></i>
+              </span>
+              <select class="form-select border-warning" [(ngModel)]="editModel.packageSize" required>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+              </select>
+            </div>
+            <!-- Validation: Shows error for invalid size -->
+            <div *ngIf="!editModel.packageSize" class="text-danger small mt-1">Package size is required.</div>
+            <!-- Presentation Tip: Notes textarea - Special instructions field -->
+            <!-- Explain: Sticky note icon for additional information, multi-line input -->
+            <div class="input-group mb-2">
+              <span class="input-group-text bg-warning text-white">
+                <i class="bi bi-sticky"></i>
+              </span>
+              <textarea class="form-control border-warning" [(ngModel)]="editModel.notes" rows="2" placeholder="Notes" required></textarea>
+            </div>
+            <!-- Validation: Shows error for invalid notes -->
+            <div *ngIf="!editModel.notes" class="text-danger small mt-1">Notes are required.</div>
+            <!-- Presentation Tip: Edit action buttons - Save and cancel controls -->
+            <!-- Explain: Flexbox layout for save/cancel actions during editing -->
+            <div class="d-flex justify-content-between mt-3">
+              <!-- Presentation Tip: Save button - Confirm and apply changes -->
+              <!-- Explain: Success button with save icon updates delivery data -->
+              <button class="btn btn-success btn-sm d-flex align-items-center" (click)="update()">
+                <i class="bi bi-save me-1"></i> Save
+              </button>
+              <!-- Presentation Tip: Cancel button - Discard changes and exit edit mode -->
+              <!-- Explain: Secondary button with x-circle icon cancels editing -->
+              <button class="btn btn-secondary btn-sm d-flex align-items-center" (click)="cancelEdit()">
+                <i class="bi bi-x-circle me-1"></i> Cancel
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

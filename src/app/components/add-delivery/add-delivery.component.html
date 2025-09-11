@@ -1,0 +1,223 @@
+<form (ngSubmit)="add()" #deliveryForm="ngForm" novalidate>
+  <div class="container mt-3">
+    <!-- Flex container with fixed height -->
+    <div
+      class="d-flex justify-content-center gap-3 align-items-stretch"
+      style="max-width: 1200px; margin: auto; height: 600px;"
+    >
+      <!-- Image container fills 50% width and full height -->
+      <div
+        style="flex: 1 1 50%; border-radius: 0.5rem; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+               overflow: hidden; display: flex; align-items: center; justify-content: center;"
+      >
+        <img
+          src="https://i.ibb.co/fVqX5Gr4/poster-delivery1.png"
+          alt="poster-delivery1"
+          style="width: 100%; height: 100%; object-fit: cover;"
+        />
+      </div>
+
+      <!-- Form container fills 50% width and full height, scrolls if needed -->
+      <div
+        class="card p-3 shadow border-warning border-3"
+        style="flex: 1 1 50%; overflow-y: auto;"
+      >
+        <!-- Header -->
+        <div
+          class="mb-3"
+          style="border-radius: 0.5rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); padding: 1.5rem; background-color: #ffa601;"
+        >
+          <h4 class="text-light d-flex align-items-center gap-2 fs-5 mb-0">
+            <i class="bi bi-truck"></i> Add Delivery
+          </h4>
+        </div>
+
+        <!-- First row: Name and Phone -->
+        <div class="row mb-2">
+          <div class="col-md-6">
+            <label for="name" class="form-label text-warning">Full Name:</label>
+            <div class="input-group">
+              <span class="input-group-text bg-warning text-white fs-6">
+                <i class="bi bi-person-fill"></i>
+              </span>
+              <input
+                id="name"
+                name="name"
+                [(ngModel)]="name"
+                required
+                type="text"
+                class="form-control fs-6"
+                placeholder="Input your full name"
+                pattern="^[a-zA-Z\s]+$"
+                #nameInput="ngModel"
+              />
+            </div>
+            <div *ngIf="nameInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
+              <div *ngIf="nameInput.errors?.['required'] || nameInput.errors?.['pattern']">Name is required.</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="phone" class="form-label text-warning">Phone:</label>
+            <div class="input-group">
+              <span class="input-group-text bg-warning text-white fs-6">
+                <i class="bi bi-telephone-fill"></i>
+              </span>
+              <input
+                id="phone"
+                name="phone"
+                [(ngModel)]="phone"
+                required
+                type="tel"
+                class="form-control fs-6"
+                placeholder="Input your number phone"
+                pattern="^(0\d{8}|0\d{9})$"
+                #phoneInput="ngModel"
+              />
+            </div>
+            <div *ngIf="phoneInput.invalid && deliveryForm.submitted" class="text-danger small mt-6">
+              <div *ngIf="phoneInput.errors?.['required']">Phone is required.</div>
+              <div *ngIf="phoneInput.errors?.['pattern']">
+                Phone must be a valid Cambodian number starting with 0 followed by 8 or 9 digits.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second row: Location and Item -->
+        <div class="row mb-2">
+          <div class="col-md-6">
+            <label for="location" class="form-label text-warning">Location (Google Maps Link):</label>
+            <div class="input-group">
+              <span class="input-group-text bg-warning text-white fs-6">
+                <i class="bi bi-geo-alt-fill"></i>
+              </span>
+              <input
+                id="location"
+                name="location"
+                [(ngModel)]="location"
+                required
+                type="url"
+                pattern="https?://(www\.)?google\.com/maps.*"
+                class="form-control fs-6"
+                placeholder="Paste Google Maps link here"
+                #locationInput="ngModel"
+              />
+            </div>
+            <div *ngIf="locationInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
+              Valid Google Maps link is required.
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="item" class="form-label text-warning">Item Description:</label>
+            <div class="input-group">
+              <span class="input-group-text bg-warning text-white fs-6">
+                <i class="bi bi-box-seam"></i>
+              </span>
+              <input
+                id="item"
+                name="item"
+                [(ngModel)]="item"
+                required
+                type="text"
+                class="form-control fs-6"
+                placeholder="What are you sending?"
+                #itemInput="ngModel"
+              />
+            </div>
+            <div *ngIf="itemInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
+              Item description is required.
+            </div>
+          </div>
+        </div>
+
+        <!-- Third row: Date and Size -->
+        <div class="row mb-2">
+          <div class="col-md-6">
+            <label for="date" class="form-label text-warning">Delivery Date:</label>
+            <div class="input-group">
+              <span class="input-group-text bg-warning text-white fs-6">
+                <i class="bi bi-calendar-date"></i>
+              </span>
+              <input
+                id="date"
+                name="date"
+                [(ngModel)]="deliveryDate"
+                required
+                type="date"
+                class="form-control fs-6"
+                #dateInput="ngModel"
+              />
+            </div>
+            <div *ngIf="dateInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
+              Delivery date is required.
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="size" class="form-label text-warning">Package Size:</label>
+            <div class="input-group">
+              <span class="input-group-text bg-warning text-white fs-6">
+                <i class="bi bi-arrows-angle-expand"></i>
+              </span>
+              <select
+                id="size"
+                name="size"
+                [(ngModel)]="packageSize"
+                required
+                class="form-select fs-6"
+                #sizeInput="ngModel"
+              >
+                <option value="" disabled selected>Select package size</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+              </select>
+            </div>
+            <div *ngIf="sizeInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
+              Please select a package size.
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="mb-1">
+          <label for="notes" class="form-label text-warning">Details info:</label>
+          <div class="input-group">
+            <span class="input-group-text bg-warning text-white fs-6">
+              <i class="bi bi-sticky"></i>
+            </span>
+            <textarea
+              id="notes"
+              name="notes"
+              [(ngModel)]="notes"
+              required
+              rows="2"
+              class="form-control fs-6"
+              placeholder="Detaile Location Or Note Something"
+              #notesInput="ngModel"
+            ></textarea>
+          </div>
+          <div *ngIf="notesInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
+            Additional notes are required.
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex gap-3 mt-1">
+          <button class="btn btn-success flex-fill" type="submit">
+            <i class="bi bi-plus-circle me-2 fs-6"></i> Add Delivery
+          </button>
+
+          <button class="btn btn-danger flex-fill" type="button" (click)="clearForm()">
+            <i class="bi bi-x-circle me-2 fs-6"></i> Clear
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Delivery list component -->
+<app-list-delivery></app-list-delivery>

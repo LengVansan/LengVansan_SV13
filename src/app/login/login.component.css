@@ -1,0 +1,23 @@
+  /* Tip: Custom styles to adjust the centering and layout of the login form */
+  .min-vh-100.align-items-center {
+     /* Tip: Change alignment from center to start for better positioning */
+     align-items: flex-start !important;
+     /* Tip: Add top padding to create space from the top of the viewport */
+     padding-top: 40px;
+     /* Tip: Ensure the container takes full viewport height */
+     min-height: 100vh !important;
+     /* Tip: Set height to 100% for consistent full-height display */
+     height: 100%;
+  }
+
+  /* Tip: Adjustments to the card component for better visual presentation */
+  .card {
+    /* Tip: Override default padding to reduce space inside the card */
+    padding-top: 20px !important;
+  }
+
+  /* Tip: Specific styling for the header inside the card */
+  .card h1 {
+    /* Tip: Remove top margin to align the header closer to the card top */
+    margin-top: 0;
+  }

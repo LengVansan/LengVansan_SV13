@@ -1,0 +1,82 @@
+
+
+<!-- Tip: The main body element containing the entire registration form structure -->
+<body>
+  <!-- Tip: Bootstrap flexbox container for centering the form both horizontally and vertically on the page -->
+  <div class="d-flex justify-content-center min-vh-100 align-items-center">
+    <!-- Tip: Responsive column that centers itself and takes 4/12 width on larger screens for optimal layout -->
+    <div class="col-4 mx-auto">
+      <!-- Tip: Bootstrap card component with shadow, padding, warning background gradient, and appropriate text color -->
+      <div class="card shadow-lg p-4 bg-warning bg-gradient text-text">
+        <!-- Tip: Centered heading with bottom margin, bold font weight, and primary text color for the registration title -->
+        <h1 class="text-center mb-4 fw-bold text-primary">Create New Account</h1>
+        <!-- Tip: Angular reactive form that triggers onRegister() method when the form is submitted -->
+        <form (ngSubmit)="onRegister()">
+          <!-- Tip: Container with bottom margin for spacing between form fields -->
+          <div class="mb-3">
+            <!-- Tip: Bootstrap form label with bold font and primary color for the username field -->
+            <label class="form-label fw-bold text-primary">Username:</label>
+            <!-- Tip: Bootstrap input group with no wrapping, containing icon and input for username -->
+            <div class="input-group flex-nowrap">
+              <!-- Tip: Input group text element containing the user icon for visual enhancement -->
+              <span class="input-group-text">
+                <i class="bi bi-person-fill" style="font-size: 1rem; color: blue"></i>
+              </span>
+              <!-- Tip: Bootstrap form control input field for username with required validation -->
+              <input type="text" class="form-control" placeholder="Username" required>
+            </div>
+          </div>
+          <!-- Tip: Container with bottom margin for spacing between form fields -->
+          <div class="mb-3">
+            <!-- Tip: Bootstrap form label with bold font and primary color for the email field -->
+            <label class="form-label fw-bold text-primary">Email:</label>
+            <!-- Tip: Bootstrap input group with no wrapping for the email field -->
+            <div class="input-group flex-nowrap">
+              <!-- Tip: Input group text element containing the envelope icon for email indication -->
+              <span class="input-group-text">
+                <i class="bi bi-envelope-fill" style="font-size: 1rem; color: blue"></i>
+              </span>
+              <!-- Tip: Bootstrap form control input field for email with email type and required validation -->
+              <input type="email" class="form-control" placeholder="Email" required>
+            </div>
+          </div>
+          <!-- Tip: Container with bottom margin for spacing between form fields -->
+          <div class="mb-3">
+            <!-- Tip: Bootstrap form label with bold font and primary color for the password field -->
+            <label class="form-label fw-bold text-primary">Password:</label>
+            <!-- Tip: Bootstrap input group with no wrapping for the password field -->
+            <div class="input-group flex-nowrap">
+              <!-- Tip: Input group text element containing the lock icon for password security indication -->
+              <span class="input-group-text">
+                <i class="bi bi-lock" style="font-size: 1rem; color: blue"></i>
+              </span>
+              <!-- Tip: Bootstrap form control input field for password with password type and required validation -->
+              <input type="password" class="form-control" placeholder="Create a password" required>
+            </div>
+          </div>
+          <!-- Tip: Container with bottom margin for spacing between form fields -->
+          <div class="mb-3">
+            <!-- Tip: Bootstrap form label with bold font and primary color for the confirm password field -->
+            <label class="form-label fw-bold text-primary">Confirm Password:</label>
+            <!-- Tip: Bootstrap input group with no wrapping for the confirm password field -->
+            <div class="input-group flex-nowrap">
+              <!-- Tip: Input group text element containing the lock icon for confirmation -->
+              <span class="input-group-text">
+                <i class="bi bi-lock" style="font-size: 1rem; color: blue"></i>
+              </span>
+              <!-- Tip: Bootstrap form control input field for password confirmation with required validation -->
+              <input type="password" class="form-control" placeholder="Confirm your password" required>
+            </div>
+          </div>
+          <!-- Tip: Flexbox container for buttons with gap for proper spacing -->
+          <div class="d-flex gap-2">
+            <!-- Tip: Primary submit button that fills available space for form submission -->
+            <button type="submit" class="btn btn-primary flex-fill">Register</button>
+            <!-- Tip: Danger button that fills available space and triggers goToLogin() on click to navigate to login -->
+            <button type="button" class="btn btn-danger flex-fill" (click)="goToLogin()">Go Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

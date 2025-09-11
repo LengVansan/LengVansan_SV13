@@ -1,0 +1,35 @@
+  /* Tip: Container tweaks: align form near top, not vertically centered */
+  .d-flex.justify-content-center.min-vh-100.align-items-center {
+     /* Tip: align-items: flex-start !important; - override to start alignment */
+     align-items: flex-start !important;
+     /* Tip: padding-top: 40px; - add top padding */
+     padding-top: 40px;
+     /* Tip: min-height: 100vh !important; - use 100vh instead of min-vh-100 */
+     min-height: 100vh !important; /* use 100vh instead of min-vh-100 */
+     /* Tip: height: 100%; - set height to 100% */
+     height: 100%;
+  }
+
+  /* Tip: Card padding reduced */
+  .card.shadow-lg.p-4.bg-warning.bg-gradient.text-text {
+    /* Tip: padding: 1.5rem !important; - override padding */
+    padding: 1.5rem !important;
+  }
+
+  /* Tip: Smaller bottom margin on header */
+  .card h1.text-center.mb-4.fw-bold.text-primary {
+    /* Tip: margin-bottom: 1rem !important; - override bottom margin */
+    margin-bottom: 1rem !important;
+  }
+
+  /* Tip: Reduce bottom margin on input groups */
+  .card .mb-3 {
+    /* Tip: margin-bottom: 1rem !important; - override bottom margin */
+    margin-bottom: 1rem !important;
+  }
+
+  /* Tip: Tighter button spacing */
+  .card .d-flex.gap-2 {
+    /* Tip: gap: 0.5rem !important; - override gap */
+    gap: 0.5rem !important;
+  }
