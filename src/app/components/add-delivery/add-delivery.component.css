@@ -1,4 +1,3 @@
-/* Presentation Tip: Responsive container sizing for Add Delivery form */
 /* Explain: Ensures the form container adapts to different screen sizes */
 .gradient-bg-wrapper .container {
   max-width: 1200px;
@@ -6,14 +5,12 @@
   padding: 0 15px;
 }
 
-/* Presentation Tip: Card container sizing */
 /* Explain: Limits the width of the form card for readability */
 .card {
   max-width: 600px;
   margin: 0 auto;
 }
 
-/* Presentation Tip: Responsive grid adjustments for smaller screens */
 /* Explain: Makes columns full width on small devices for better usability */
 @media (max-width: 768px) {
   .col-md-5,
@@ -27,7 +24,6 @@
   }
 }
 
-/* Presentation Tip: Responsive image sizing */
 /* Explain: Ensures images scale properly and maintain aspect ratio */
 .img-fluid {
   max-width: 100%;
@@ -35,10 +31,9 @@
   max-height: 600px;
   object-fit: cover;
   border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Presentation Tip: Add Delivery button styling */
 /* Explain: Styles the submit button for prominence and accessibility */
 .btn-success {
   min-height: 44px;
@@ -49,7 +44,6 @@
   white-space: nowrap; /* prevent text breaking */
 }
 
-/* Presentation Tip: Clear button styling */
 /* Explain: Styles the clear/reset button for consistency */
 .btn-danger {
   white-space: nowrap;
@@ -60,14 +54,12 @@
   font-size: 1.1rem;
 }
 
-/* Presentation Tip: Icon styling in buttons */
 /* Explain: Ensures icons have appropriate size and spacing */
 .btn i {
   font-size: 1.3rem;
   margin-right: 0.5rem;
 }
 
-/* Presentation Tip: Input and input-group-text sizing */
 /* Explain: Sets font size and padding for form controls */
 .input-group-text,
 .form-control {
@@ -75,13 +67,11 @@
   padding: 0.5rem 1rem;
 }
 
-/* Presentation Tip: Form spacing improvements */
 /* Explain: Adds padding to card for better layout */
 .card.p-4 {
   padding: 2rem !important;
 }
 
-/* Presentation Tip: Responsive font sizes on small screens */
 /* Explain: Adjusts font size and padding for mobile usability */
 @media (max-width: 576px) {
   .form-control,

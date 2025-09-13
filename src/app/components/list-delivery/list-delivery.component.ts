@@ -1,53 +1,42 @@
-// Presentation Tip: Import statements - Angular core and modules for component functionality
-// Explain: Importing necessary Angular modules and services for component operation
+//Importing necessary Angular modules and services for component operation
 import { Component, OnInit } from '@angular/core'; // Component decorator and lifecycle hook
 import { CommonModule } from '@angular/common'; // Common directives like *ngIf, *ngFor
 import { FormsModule } from '@angular/forms'; // Template-driven forms support
+import { RouterModule } from '@angular/router'; // Router module for routerLink directive
 import { Router } from '@angular/router'; // Navigation service for routing
 import { DeliveryService } from '../../services/delivery.service'; // Service for delivery data operations
 import { Delivery } from '../../models/delivery.model'; // Delivery data model interface
 
-// Presentation Tip: Component decorator - Defines metadata for the component
-// Explain: Standalone component with selector, imported modules, and template URL
+//Standalone component with selector, imported modules, and template URL
 @Component({
   selector: 'app-list-delivery', // HTML tag for this component
   standalone: true, // Standalone component without NgModule
-  imports: [CommonModule, FormsModule], // Imported modules for template usage
+  imports: [CommonModule, FormsModule, RouterModule], // Imported modules for template usage
   templateUrl: './list-delivery.component.html' // External HTML template file
 })
-// Presentation Tip: Component class - Implements OnInit lifecycle hook
-// Explain: Manages delivery list display, editing, and deletion
+
+// Manages delivery list display, editing, and deletion
 export class ListDeliveryComponent implements OnInit {
-  // Presentation Tip: Deliveries array - Holds list of delivery objects
-  // Explain: Populated from DeliveryService, used for rendering delivery cards
+  // Populated from DeliveryService, used for rendering delivery cards
   deliveries: Delivery[] = [];
-  // Presentation Tip: Editing ID - Tracks which delivery is currently being edited
   // Explain: Null means no delivery is in edit mode
   editingId: number | null = null;
-  // Presentation Tip: Edit model - Holds data for the delivery being edited
-  // Explain: Initialized with empty/default values, bound to edit form inputs
+  // initialized with empty/default values, bound to edit form inputs
   editModel: Delivery = { id: 0, name: '', phone: '', location: '', item: '', deliveryDate: '', packageSize: '', notes: '' };
-
-  // Presentation Tip: Constructor - Injects DeliveryService and Router
-  // Explain: Provides access to delivery data operations and navigation
+  // Provides access to delivery data operations and navigation
   constructor(
     private deliveryService: DeliveryService,
     private router: Router
   ) {}
-
-  // Presentation Tip: ngOnInit lifecycle hook - Called after component initialization
-  // Explain: Loads the initial list of deliveries
+  // Loads the initial list of deliveries
   ngOnInit(): void {
     this.refresh();
   }
 
-  // Presentation Tip: Refresh method - Updates deliveries array from service
-  // Explain: Ensures UI reflects current delivery data
+  // Ensures UI reflects current delivery data
   refresh(): void {
     this.deliveries = this.deliveryService.getAll();
   }
-
-  // Presentation Tip: Edit method - Activates edit mode for a delivery
   // Explain: Sets editingId and copies delivery data to editModel for editing
   edit(d: Delivery): void {
     this.editingId = d.id;
@@ -62,9 +51,7 @@ export class ListDeliveryComponent implements OnInit {
       notes: d.notes || ''
     };
   }
-
-  // Presentation Tip: Update method - Saves changes to delivery
-  // Explain: Validates fields, calls service update, shows confirmation, cancels edit mode, refreshes list
+  // Validates fields, calls service update, shows confirmation, cancels edit mode, refreshes list
   update(): void {
     // Validate required fields
     if (!this.editModel.name || !this.editModel.phone || !this.editModel.location || !this.editModel.item || !this.editModel.deliveryDate || !this.editModel.packageSize || !this.editModel.notes) {
@@ -99,32 +86,20 @@ export class ListDeliveryComponent implements OnInit {
     this.cancelEdit();
     this.refresh();
   }
-
-  // Presentation Tip: Cancel edit method - Exits edit mode without saving
   // Explain: Resets editingId to null
   cancelEdit(): void {
     this.editingId = null;
   }
-
-  // Presentation Tip: Delete method - Removes delivery by ID
-  // Explain: Calls service delete and refreshes list
+  // Calls service delete and refreshes list
   delete(id: number): void {
     this.deliveryService.delete(id);
     this.refresh();
   }
-
-  // Presentation Tip: Confirm delete method - Prompts user before deletion
-  // Explain: Shows confirmation dialog, deletes if confirmed
+  // Shows confirmation dialog, deletes if confirmed
   confirmDelete(id: number): void {
     const confirmed = confirm('Do you want to delete this delivery?');
     if (confirmed) {
       this.delete(id);
     }
   }
-
-  // Presentation Tip: Navigation method (commented out) - For adding new delivery
-  // Explain: Navigates to register page (currently unused)
-  //addNewDelivery(): void {
-  //  this.router.navigate(['/register']);
-  //}
 }

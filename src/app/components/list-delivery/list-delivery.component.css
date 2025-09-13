@@ -1,35 +1,22 @@
-/* Presentation Tip: List Delivery Component Styles */
-/* Explain: Custom styles for the delivery list component */
-
-/* Presentation Tip: Card styling for delivery items */
-/* Explain: Ensures consistent card appearance across the delivery list */
-
+/* Ensures consistent card appearance across the delivery list */
 .card {
   transition: box-shadow 0.3s ease;
 }
-
-/* Presentation Tip: Card hover effect */
-/* Explain: Adds visual feedback when hovering over delivery cards */
+/* Adds visual feedback when hovering over delivery cards */
 .card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
 }
-
-/* Presentation Tip: Edit form styling */
-/* Explain: Ensures edit forms have proper spacing and visual hierarchy */
+/* Ensures edit forms have proper spacing and visual hierarchy */
 .edit-form {
   background-color: #f8f9fa;
   border-radius: 0.375rem;
   padding: 1rem;
 }
-
-/* Presentation Tip: Button group spacing */
-/* Explain: Provides consistent spacing for action button groups */
+/* Provides consistent spacing for action button groups */
 .btn-group {
   gap: 0.5rem;
 }
-
-/* Presentation Tip: Responsive adjustments for smaller screens */
-/* Explain: Ensures delivery cards stack properly on mobile devices */
+/* delivery cards stack properly on mobile devices */
 @media (max-width: 768px) {
   .col-md-4 {
     margin-bottom: 1rem;
@@ -39,16 +26,12 @@
     margin-bottom: 1rem;
   }
 }
-
-/* Presentation Tip: Icon styling in delivery information */
-/* Explain: Ensures consistent icon sizing and color */
+/*Ensures consistent icon sizing and color */
 .card i {
   color: #ffc107;
   margin-right: 0.5rem;
 }
-
-/* Presentation Tip: Link styling for location */
-/* Explain: Makes location links visually distinct */
+/*Makes location links visually distinct */
 .card a {
   color: #007bff;
   text-decoration: none;
@@ -58,15 +41,13 @@
   text-decoration: underline;
 }
 
-/* Presentation Tip: Form control styling in edit mode */
-/* Explain: Ensures form inputs in edit mode match the component theme */
+/*Ensures form inputs in edit mode match the component theme */
 .form-control:focus {
   border-color: #ffc107;
   box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
 }
 
-/* Presentation Tip: Select dropdown styling */
-/* Explain: Ensures dropdowns match the warning theme */
+/*Ensures dropdowns match the warning theme */
 .form-select:focus {
   border-color: #ffc107;
   box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);

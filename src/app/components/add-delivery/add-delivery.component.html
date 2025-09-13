@@ -3,29 +3,41 @@
     <!-- Flex container with fixed height -->
     <div
       class="d-flex justify-content-center gap-3 align-items-stretch"
-      style="max-width: 1200px; margin: auto; height: 600px;"
+      style="max-width: 1200px; margin: auto; height: 600px"
     >
       <!-- Image container fills 50% width and full height -->
       <div
-        style="flex: 1 1 50%; border-radius: 0.5rem; box-shadow: 0 0 10px rgba(0,0,0,0.1);
-               overflow: hidden; display: flex; align-items: center; justify-content: center;"
+        style="
+          flex: 1 1 50%;
+          border-radius: 0.5rem;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
       >
         <img
           src="https://i.ibb.co/fVqX5Gr4/poster-delivery1.png"
           alt="poster-delivery1"
-          style="width: 100%; height: 100%; object-fit: cover;"
+          style="width: 100%; height: 100%; object-fit: cover"
         />
       </div>
 
       <!-- Form container fills 50% width and full height, scrolls if needed -->
       <div
         class="card p-3 shadow border-warning border-3"
-        style="flex: 1 1 50%; overflow-y: auto;"
+        style="flex: 1 1 50%; overflow-y: auto"
       >
         <!-- Header -->
         <div
           class="mb-3"
-          style="border-radius: 0.5rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); padding: 1.5rem; background-color: #ffa601;"
+          style="
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            background-color: #ffa601;
+          "
         >
           <h4 class="text-light d-flex align-items-center gap-2 fs-5 mb-0">
             <i class="bi bi-truck"></i> Add Delivery
@@ -52,8 +64,15 @@
                 #nameInput="ngModel"
               />
             </div>
-            <div *ngIf="nameInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
-              <div *ngIf="nameInput.errors?.['required'] || nameInput.errors?.['pattern']">Name is required.</div>
+            <div
+              *ngIf="nameInput.invalid && deliveryForm.submitted"
+              class="text-danger small mt-1"
+            >
+              <div
+                *ngIf="nameInput.errors?.['required'] || nameInput.errors?.['pattern']"
+              >
+                Name is required.
+              </div>
             </div>
           </div>
 
@@ -75,10 +94,16 @@
                 #phoneInput="ngModel"
               />
             </div>
-            <div *ngIf="phoneInput.invalid && deliveryForm.submitted" class="text-danger small mt-6">
-              <div *ngIf="phoneInput.errors?.['required']">Phone is required.</div>
+            <div
+              *ngIf="phoneInput.invalid && deliveryForm.submitted"
+              class="text-danger small mt-6"
+            >
+              <div *ngIf="phoneInput.errors?.['required']">
+                Phone is required.
+              </div>
               <div *ngIf="phoneInput.errors?.['pattern']">
-                Phone must be a valid Cambodian number starting with 0 followed by 8 or 9 digits.
+                Phone must be a valid Cambodian number starting with 0 followed
+                by 8 or 9 digits.
               </div>
             </div>
           </div>
@@ -87,7 +112,9 @@
         <!-- Second row: Location and Item -->
         <div class="row mb-2">
           <div class="col-md-6">
-            <label for="location" class="form-label text-warning">Location (Google Maps Link):</label>
+            <label for="location" class="form-label text-warning"
+              >Location (Google Maps Link):</label
+            >
             <div class="input-group">
               <span class="input-group-text bg-warning text-white fs-6">
                 <i class="bi bi-geo-alt-fill"></i>
@@ -104,13 +131,18 @@
                 #locationInput="ngModel"
               />
             </div>
-            <div *ngIf="locationInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
+            <div
+              *ngIf="locationInput.invalid && deliveryForm.submitted"
+              class="text-danger small mt-1"
+            >
               Valid Google Maps link is required.
             </div>
           </div>
 
           <div class="col-md-6">
-            <label for="item" class="form-label text-warning">Item Description:</label>
+            <label for="item" class="form-label text-warning"
+              >Item Description:</label
+            >
             <div class="input-group">
               <span class="input-group-text bg-warning text-white fs-6">
                 <i class="bi bi-box-seam"></i>
@@ -126,7 +158,10 @@
                 #itemInput="ngModel"
               />
             </div>
-            <div *ngIf="itemInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
+            <div
+              *ngIf="itemInput.invalid && deliveryForm.submitted"
+              class="text-danger small mt-1"
+            >
               Item description is required.
             </div>
           </div>
@@ -135,7 +170,9 @@
         <!-- Third row: Date and Size -->
         <div class="row mb-2">
           <div class="col-md-6">
-            <label for="date" class="form-label text-warning">Delivery Date:</label>
+            <label for="date" class="form-label text-warning"
+              >Delivery Date:</label
+            >
             <div class="input-group">
               <span class="input-group-text bg-warning text-white fs-6">
                 <i class="bi bi-calendar-date"></i>
@@ -150,13 +187,18 @@
                 #dateInput="ngModel"
               />
             </div>
-            <div *ngIf="dateInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
+            <div
+              *ngIf="dateInput.invalid && deliveryForm.submitted"
+              class="text-danger small mt-1"
+            >
               Delivery date is required.
             </div>
           </div>
 
           <div class="col-md-6">
-            <label for="size" class="form-label text-warning">Package Size:</label>
+            <label for="size" class="form-label text-warning"
+              >Package Size:</label
+            >
             <div class="input-group">
               <span class="input-group-text bg-warning text-white fs-6">
                 <i class="bi bi-arrows-angle-expand"></i>
@@ -175,7 +217,10 @@
                 <option value="large">Large</option>
               </select>
             </div>
-            <div *ngIf="sizeInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
+            <div
+              *ngIf="sizeInput.invalid && deliveryForm.submitted"
+              class="text-danger small mt-1"
+            >
               Please select a package size.
             </div>
           </div>
@@ -183,7 +228,9 @@
 
         <!-- Notes -->
         <div class="mb-1">
-          <label for="notes" class="form-label text-warning">Details info:</label>
+          <label for="notes" class="form-label text-warning"
+            >Details info:</label
+          >
           <div class="input-group">
             <span class="input-group-text bg-warning text-white fs-6">
               <i class="bi bi-sticky"></i>
@@ -199,7 +246,10 @@
               #notesInput="ngModel"
             ></textarea>
           </div>
-          <div *ngIf="notesInput.invalid && deliveryForm.submitted" class="text-danger small mt-1">
+          <div
+            *ngIf="notesInput.invalid && deliveryForm.submitted"
+            class="text-danger small mt-1"
+          >
             Additional notes are required.
           </div>
         </div>
@@ -210,14 +260,26 @@
             <i class="bi bi-plus-circle me-2 fs-6"></i> Add Delivery
           </button>
 
-          <button class="btn btn-danger flex-fill" type="button" (click)="clearForm()">
+          <button
+            class="btn btn-danger flex-fill"
+            type="button"
+            (click)="clearForm()"
+          >
             <i class="bi bi-x-circle me-2 fs-6"></i> Clear
           </button>
         </div>
+
       </div>
     </div>
   </div>
 </form>
+
+<!-- Create New Account Button -->
+<div class="mt-3 d-flex justify-content-end">
+  <button class="btn btn-warning text-white" [routerLink]="'/register'">
+    <i class="bi bi-plus-circle me-2 fs-5"></i> Create New Account
+  </button>
+</div>
 
 <!-- Delivery list component -->
 <app-list-delivery></app-list-delivery>

@@ -9,7 +9,7 @@
         <!-- Card container with shadow and padding -->
         <div class="card shadow-lg p-4 bg-primary-subtlebg-gradient text-white">
           <!-- Login form title -->
-          <h1 class="text-center mb-4 fw-bold text-warning">Login Form </h1>
+          <h1 class="text-center mb-4 fw-bold text-warning">Login Form</h1>
 
           <!-- Username label -->
           <label class="form-label fw-bold text-warning">Username:</label>
@@ -73,7 +73,7 @@
           <!-- Buttons row -->
           <div class="d-flex gap-2 mt-4">
             <!-- Submit button, only enabled when form is valid -->
-            <button type="submit" class="btn btn-primary flex-fill" [disabled]="loginForm.invalid" [routerLink]="loginForm.valid ? '/add-delivery' : null">
+            <button type="submit" class="btn btn-primary flex-fill" [disabled]="loginForm.invalid" [routerLink]="loginForm.valid ? '/dashboard' : null">
               Login
             </button>
 
